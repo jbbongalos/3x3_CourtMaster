@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container py-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('teams') }}">Teams</a></li>
+            <li class="breadcrumb-item active">{{ team.team_name }}</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-0 bg-primary text-white p-3">
+                <div class="card-body">
+                    <h2 class="fw-bold">{{ team.team_name }}</h2>
+                    <p class="mb-0 text-white-50">Head Coach: {{ team.coach_name }}</p>
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <span>Current Wins:</span>
+                        <span class="h4 fw-bold mb-0">{{ wins }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0 fw-bold">Official Roster</h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Player Name</th>
+                                <th>Position</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for player in roster %}
+                            <tr>
+                                <td><span class="badge bg-secondary">{{ player.jersey_number }}</span></td>
+                                <td>{{ player.first_name }} {{ player.last_name }}</td>
+                                <td>{{ player.position }}</td>
+                            </tr>
+                            {% else %}
+                            <tr><td colspan="3" class="text-center py-4">No players currently assigned to this team.</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
