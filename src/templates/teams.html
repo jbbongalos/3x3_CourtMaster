@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>League Teams</h2>
+    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addTeamModal">Add New Team</button>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped bg-white">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Team Name</th>
+                <th>City</th>
+                <th>Coach</th>
+                <th>W - L</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for team in teams %}
+            <tr>
+                <td>{{ team.team_id }}</td>
+                <td><strong>{{ team.team_name }}</strong></td>
+                <td>{{ team.city }}</td>
+                <td>{{ team.coach_name }}</td>
+                <td>{{ team.wins }} - {{ team.losses }}</td>
+                <td>
+                    <a href="/edit_team/{{ team.team_id }}" class="btn btn-sm btn-info">Edit</a>
+                    <form action="/delete_team/{{ team.team_id }}" method="POST" style="display:inline;">
+                        <button class="btn btn-sm btn-danger" onclick="return confirm('Deleting a team may affect player records. Continue?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal for Adding Team -->
+<div class="modal fade" id="addTeamModal" tabindex="-1">
+    <div class="modal-dialog">
+        <form action="/add_team" method="POST" class="modal-content">
+            <div class="modal-header"><h5>Add New Team</h5></div>
+            <div class="modal-body">
+                <input type="text" name="team_name" class="form-control mb-3" placeholder="Team Name" required>
+                <input type="text" name="city" class="form-control mb-3" placeholder="City">
+                <input type="text" name="coach_name" class="form-control mb-3" placeholder="Coach Name">
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Save Team</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
