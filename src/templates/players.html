@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Player Roster</h2>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPlayerModal">+ Add New Player</button>
+</div>
+
+<table class="table table-hover bg-white shadow-sm rounded">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Jersey #</th>
+            <th>Position</th>
+            <th>Team</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for player in players %}
+        <tr>
+            <td>{{ player.player_id }}</td>
+            <td>{{ player.first_name }} {{ player.last_name }}</td>
+            <td>#{{ player.jersey_number }}</td>
+            <td>{{ player.position }}</td>
+            <td>{{ player.team_name }}</td>
+            <td>
+                <a href="/edit_player/{{ player.player_id }}" class="btn btn-sm btn-outline-warning">Edit</a>
+                <a href="/delete_player/{{ player.player_id }}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Simple Add Player Modal (Form) -->
+<div class="modal fade" id="addPlayerModal" tabindex="-1">
+    <div class="modal-dialog">
+        <form action="/add_player" method="POST" class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Player</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <input type="text" name="first_name" class="form-control mb-2" placeholder="First Name" required>
+                <input type="text" name="last_name" class="form-control mb-2" placeholder="Last Name" required>
+                <input type="number" name="jersey_number" class="form-control mb-2" placeholder="Jersey Number">
+                <select name="position" class="form-select mb-2">
+                    <option value="Point Guard">Point Guard</option>
+                    <option value="Center">Center</option>
+                    <!-- Add other positions -->
+                </select>
+                <select name="team_id" class="form-select">
+                    {% for team in teams %}
+                    <option value="{{ team.team_id }}">{{ team.team_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success">Save Player</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
