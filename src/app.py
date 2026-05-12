@@ -18,27 +18,22 @@ def get_db_connection():
 def index():
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
-    
     cursor.execute("SELECT COUNT(*) as count FROM players")
     p_count = cursor.fetchone()['count']
-    
     cursor.execute("SELECT COUNT(*) as count FROM teams")
     t_count = cursor.fetchone()['count']
-    
     cursor.execute("SELECT COUNT(*) as count FROM games")
     g_count = cursor.fetchone()['count']
-    
     cursor.close()
     conn.close()
     return render_template('index.html', p_count=p_count, t_count=t_count, g_count=g_count)
 
-# --- 2. PLAYERS SECTION (READ & SEARCH) ---
+# --- 2. PLAYERS SECTION ---
 @app.route('/players')
 def players():
     query = request.args.get('query')
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
-    
     if query:
         search_val = f"%{query}%"
         cursor.execute("""
@@ -53,31 +48,39 @@ def players():
             FROM players 
             LEFT JOIN teams ON players.team_id = teams.team_id
         """)
-    
     players_list = cursor.fetchall()
     cursor.execute("SELECT * FROM teams")
     teams_list = cursor.fetchall()
-    
     cursor.close()
     conn.close()
     return render_template('players.html', players=players_list, teams=teams_list)
 
-@app.route('/add_player', methods=['POST'])
-def add_player():
-    fname = request.form['first_name']
-    lname = request.form['last_name']
-    jersey = request.form['jersey_number']
-    pos = request.form['position']
-    t_id = request.form['team_id'] if request.form['team_id'] else None
-
+@app.route('/edit_player/<int:id>', methods=['GET', 'POST'])
+def edit_player(id):
     conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute("INSERT INTO players (first_name, last_name, jersey_number, position, team_id) VALUES (%s, %s, %s, %s, %s)", 
-                   (fname, lname, jersey, pos, t_id))
-    conn.commit()
+    cursor = conn.cursor(dictionary=True)
+    if request.method == 'POST':
+        fname = request.form['first_name']
+        lname = request.form['last_name']
+        jersey = request.form['jersey_number']
+        pos = request.form['position']
+        t_id = request.form['team_id']
+        cursor.execute("""
+            UPDATE players SET first_name=%s, last_name=%s, jersey_number=%s, position=%s, team_id=%s 
+            WHERE player_id=%s
+        """, (fname, lname, jersey, pos, t_id, id))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return redirect(url_for('players'))
+    
+    cursor.execute("SELECT * FROM players WHERE player_id = %s", (id,))
+    player = cursor.fetchone()
+    cursor.execute("SELECT * FROM teams")
+    teams = cursor.fetchall()
     cursor.close()
     conn.close()
-    return redirect(url_for('players'))
+    return render_template('edit_player.html', player=player, teams=teams)
 
 @app.route('/delete_player/<int:id>')
 def delete_player(id):
@@ -100,19 +103,6 @@ def teams():
     conn.close()
     return render_template('teams.html', teams=teams_list)
 
-@app.route('/add_team', methods=['POST'])
-def add_team():
-    name = request.form['team_name']
-    city = request.form['city']
-    coach = request.form['coach_name']
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute("INSERT INTO teams (team_name, city, coach_name) VALUES (%s, %s, %s)", (name, city, coach))
-    conn.commit()
-    cursor.close()
-    conn.close()
-    return redirect(url_for('teams'))
-
 # --- 4. GAMES SECTION ---
 @app.route('/games')
 def games():
@@ -125,31 +115,35 @@ def games():
         JOIN teams t2 ON games.away_team_id = t2.team_id
     """)
     games_list = cursor.fetchall()
-    cursor.execute("SELECT * FROM teams")
-    teams_list = cursor.fetchall()
     cursor.close()
     conn.close()
-    return render_template('games.html', games=games_list, teams=teams_list)
+    return render_template('games.html', games=games_list)
 
-@app.route('/add_game', methods=['POST'])
-def add_game():
-    g_date = request.form['game_date']
-    home_id = request.form['home_team_id']
-    away_id = request.form['away_team_id']
-    h_score = request.form['home_score']
-    a_score = request.form['away_score']
-    venue = request.form['venue']
-
+@app.route('/edit_game/<int:id>', methods=['GET', 'POST'])
+def edit_game(id):
     conn = get_db_connection()
-    cursor = conn.cursor()
+    cursor = conn.cursor(dictionary=True)
+    if request.method == 'POST':
+        h_score = request.form['home_score']
+        a_score = request.form['away_score']
+        venue = request.form['venue']
+        cursor.execute("UPDATE games SET home_team_score=%s, away_team_score=%s, venue=%s WHERE game_id=%s", 
+                       (h_score, a_score, venue, id))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return redirect(url_for('games'))
+
     cursor.execute("""
-        INSERT INTO games (game_date, home_team_id, away_team_id, home_team_score, away_team_score, venue)
-        VALUES (%s, %s, %s, %s, %s, %s)
-    """, (g_date, home_id, away_id, h_score, a_score, venue))
-    conn.commit()
+        SELECT g.*, t1.team_name as home, t2.team_name as away 
+        FROM games g 
+        JOIN teams t1 ON g.home_team_id = t1.team_id 
+        JOIN teams t2 ON g.away_team_id = t2.team_id 
+        WHERE g.game_id = %s""", (id,))
+    game = cursor.fetchone()
     cursor.close()
     conn.close()
-    return redirect(url_for('games'))
+    return render_template('edit_game.html', game=game)
 
 if __name__ == '__main__':
     app.run(debug=True)
