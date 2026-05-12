@@ -1,51 +1,42 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <h2>League Teams</h2>
-    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addTeamModal">Add New Team</button>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="bi bi-shield-shaded"></i> League Teams</h2>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTeamModal">Add New Team</button>
 </div>
 
-<div class="table-responsive">
-    <table class="table table-bordered table-striped bg-white">
-        <thead class="table-dark">
-            <tr>
-                <th>ID</th>
-                <th>Team Name</th>
-                <th>City</th>
-                <th>Coach</th>
-                <th>W - L</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for team in teams %}
-            <tr>
-                <td>{{ team.team_id }}</td>
-                <td><strong>{{ team.team_name }}</strong></td>
-                <td>{{ team.city }}</td>
-                <td>{{ team.coach_name }}</td>
-                <td>{{ team.wins }} - {{ team.losses }}</td>
-                <td>
-                    <a href="/edit_team/{{ team.team_id }}" class="btn btn-sm btn-info">Edit</a>
-                    <form action="/delete_team/{{ team.team_id }}" method="POST" style="display:inline;">
-                        <button class="btn btn-sm btn-danger" onclick="return confirm('Deleting a team may affect player records. Continue?')">Delete</button>
-                    </form>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div class="row">
+    {% for team in teams %}
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm border-bottom border-primary border-3">
+            <div class="card-body text-center">
+                <div class="h4 fw-bold">{{ team.team_name }}</div>
+                <div class="text-muted mb-2"><i class="bi bi-geo-alt"></i> {{ team.city }}</div>
+                <div class="small">Coach: <strong>{{ team.coach_name }}</strong></div>
+                <hr>
+                <a href="{{ url_for('delete_team', id=team.team_id) }}" 
+                   class="btn btn-sm btn-outline-danger" 
+                   onclick="return confirm('Are you sure? Players in this team must be removed first.')">
+                    <i class="bi bi-trash"></i> Delete Team
+                </a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="col-12 text-center py-5">
+        <p class="text-muted">No teams registered yet.</p>
+    </div>
+    {% endfor %}
 </div>
 
-<!-- Modal for Adding Team -->
 <div class="modal fade" id="addTeamModal" tabindex="-1">
     <div class="modal-dialog">
-        <form action="/add_team" method="POST" class="modal-content">
-            <div class="modal-header"><h5>Add New Team</h5></div>
+        <form action="{{ url_for('add_team') }}" method="POST" class="modal-content">
+            <div class="modal-header bg-primary text-white"><h5>Register New Team</h5></div>
             <div class="modal-body">
-                <input type="text" name="team_name" class="form-control mb-3" placeholder="Team Name" required>
-                <input type="text" name="city" class="form-control mb-3" placeholder="City">
-                <input type="text" name="coach_name" class="form-control mb-3" placeholder="Coach Name">
+                <div class="mb-3"><label>Team Name</label><input type="text" name="team_name" class="form-control" required></div>
+                <div class="mb-3"><label>City</label><input type="text" name="city" class="form-control" required></div>
+                <div class="mb-3"><label>Coach Name</label><input type="text" name="coach_name" class="form-control" required></div>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">Save Team</button>
