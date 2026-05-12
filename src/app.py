@@ -30,7 +30,7 @@ def index():
     conn.close()
     return render_template('index.html', p_count=p_count, t_count=t_count, g_count=g_count)
 
-# --- 2. PLAYERS SECTION (SEARCH & CRUD) ---
+# --- 2. PLAYERS SECTION ---
 @app.route('/players')
 def players():
     query = request.args.get('query')
@@ -103,7 +103,7 @@ def delete_player(id):
     conn.close()
     return redirect(url_for('players'))
 
-# --- 3. TEAMS SECTION (WITH VIEWING & DELETE) ---
+# --- 3. TEAMS SECTION ---
 @app.route('/teams')
 def teams():
     conn = get_db_connection()
@@ -119,25 +119,33 @@ def team_details(id):
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
     
-    # 1. Get basic team info
+    # Get Team Info
     cursor.execute("SELECT * FROM teams WHERE team_id = %s", (id,))
     team = cursor.fetchone()
     
-    # 2. Get players assigned to this team
+    # Get Roster
     cursor.execute("SELECT * FROM players WHERE team_id = %s", (id,))
     roster = cursor.fetchall()
     
-    # 3. Calculate wins from games table
+    # Calculate WINS
     cursor.execute("""
         SELECT COUNT(*) as wins FROM games 
         WHERE (home_team_id = %s AND home_team_score > away_team_score)
         OR (away_team_id = %s AND away_team_score > home_team_score)
     """, (id, id))
-    stats = cursor.fetchone()
+    wins = cursor.fetchone()['wins']
+
+    # Calculate LOSSES
+    cursor.execute("""
+        SELECT COUNT(*) as losses FROM games 
+        WHERE (home_team_id = %s AND home_team_score < away_team_score)
+        OR (away_team_id = %s AND away_team_score < home_team_score)
+    """, (id, id))
+    losses = cursor.fetchone()['losses']
     
     cursor.close()
     conn.close()
-    return render_template('team_view.html', team=team, roster=roster, wins=stats['wins'])
+    return render_template('team_view.html', team=team, roster=roster, wins=wins, losses=losses)
 
 @app.route('/add_team', methods=['POST'])
 def add_team():
@@ -164,7 +172,7 @@ def delete_team(id):
         conn.close()
     return redirect(url_for('teams'))
 
-# --- 4. GAMES SECTION (WITH SORTING & DELETE) ---
+# --- 4. GAMES SECTION ---
 @app.route('/games')
 def games():
     conn = get_db_connection()
