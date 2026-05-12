@@ -1,30 +1,32 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2><i class="bi bi-shield-shaded"></i> League Teams</h2>
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTeamModal">Add New Team</button>
+    <h2 class="fw-bold"><i class="bi bi-shield-shaded"></i> Registered Teams</h2>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTeamModal">
+        <i class="bi bi-plus-lg"></i> Add New Team
+    </button>
 </div>
 
 <div class="row">
     {% for team in teams %}
-    <div class="col-md-4 mb-3">
-        <div class="card shadow-sm border-bottom border-primary border-3">
-            <div class="card-body text-center">
-                <div class="h4 fw-bold">{{ team.team_name }}</div>
-                <div class="text-muted mb-2"><i class="bi bi-geo-alt"></i> {{ team.city }}</div>
-                <div class="small">Coach: <strong>{{ team.coach_name }}</strong></div>
-                <hr>
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body text-center p-4">
+                <div class="display-5 text-primary mb-2"><i class="bi bi-people-fill"></i></div>
+                <h4 class="fw-bold">{{ team.team_name }}</h4>
+                <p class="text-muted mb-3"><i class="bi bi-geo-alt"></i> {{ team.city }}</p>
+                
+                <a href="{{ url_for('team_details', id=team.team_id) }}" class="btn btn-outline-primary btn-sm w-100 mb-2">
+                    <i class="bi bi-search"></i> View Standing & Roster
+                </a>
+
                 <a href="{{ url_for('delete_team', id=team.team_id) }}" 
-                   class="btn btn-sm btn-outline-danger" 
-                   onclick="return confirm('Are you sure? Players in this team must be removed first.')">
-                    <i class="bi bi-trash"></i> Delete Team
+                   class="btn btn-sm btn-link text-danger" 
+                   onclick="return confirm('Delete this team? This will fail if players are assigned.')">
+                   Remove Team
                 </a>
             </div>
         </div>
-    </div>
-    {% else %}
-    <div class="col-12 text-center py-5">
-        <p class="text-muted">No teams registered yet.</p>
     </div>
     {% endfor %}
 </div>
@@ -32,15 +34,13 @@
 <div class="modal fade" id="addTeamModal" tabindex="-1">
     <div class="modal-dialog">
         <form action="{{ url_for('add_team') }}" method="POST" class="modal-content">
-            <div class="modal-header bg-primary text-white"><h5>Register New Team</h5></div>
+            <div class="modal-header"><h5>Register Team</h5></div>
             <div class="modal-body">
                 <div class="mb-3"><label>Team Name</label><input type="text" name="team_name" class="form-control" required></div>
                 <div class="mb-3"><label>City</label><input type="text" name="city" class="form-control" required></div>
                 <div class="mb-3"><label>Coach Name</label><input type="text" name="coach_name" class="form-control" required></div>
             </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Save Team</button>
-            </div>
+            <div class="modal-footer"><button type="submit" class="btn btn-primary">Save Team</button></div>
         </form>
     </div>
 </div>
