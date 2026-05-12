@@ -103,7 +103,7 @@ def delete_player(id):
     conn.close()
     return redirect(url_for('players'))
 
-# --- 3. TEAMS SECTION (WITH DELETE) ---
+# --- 3. TEAMS SECTION (WITH VIEWING & DELETE) ---
 @app.route('/teams')
 def teams():
     conn = get_db_connection()
@@ -113,6 +113,31 @@ def teams():
     cursor.close()
     conn.close()
     return render_template('teams.html', teams=teams_list)
+
+@app.route('/team/<int:id>')
+def team_details(id):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    
+    # 1. Get basic team info
+    cursor.execute("SELECT * FROM teams WHERE team_id = %s", (id,))
+    team = cursor.fetchone()
+    
+    # 2. Get players assigned to this team
+    cursor.execute("SELECT * FROM players WHERE team_id = %s", (id,))
+    roster = cursor.fetchall()
+    
+    # 3. Calculate wins from games table
+    cursor.execute("""
+        SELECT COUNT(*) as wins FROM games 
+        WHERE (home_team_id = %s AND home_team_score > away_team_score)
+        OR (away_team_id = %s AND away_team_score > home_team_score)
+    """, (id, id))
+    stats = cursor.fetchone()
+    
+    cursor.close()
+    conn.close()
+    return render_template('team_view.html', team=team, roster=roster, wins=stats['wins'])
 
 @app.route('/add_team', methods=['POST'])
 def add_team():
@@ -177,7 +202,6 @@ def add_game():
         conn.close()
     return redirect(url_for('games'))
 
-# --- NEW: DELETE GAME ROUTE ---
 @app.route('/delete_game/<int:id>')
 def delete_game(id):
     conn = get_db_connection()
