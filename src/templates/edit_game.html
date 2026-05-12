@@ -1,1 +1,29 @@
-
+{% extends "layout.html" %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow mx-auto" style="max-width: 600px;">
+        <div class="card-header bg-primary text-white"><h3>Update Match Score</h3></div>
+        <div class="card-body text-center">
+            <form method="POST">
+                <div class="row mb-4 align-items-center">
+                    <div class="col">
+                        <h5>{{ game.home }}</h5>
+                        <input type="number" name="home_score" class="form-control text-center h3" value="{{ game.home_team_score }}">
+                    </div>
+                    <div class="col-2"><h1>VS</h1></div>
+                    <div class="col">
+                        <h5>{{ game.away }}</h5>
+                        <input type="number" name="away_score" class="form-control text-center h3" value="{{ game.away_team_score }}">
+                    </div>
+                </div>
+                <div class="mb-3 text-start">
+                    <label>Venue Location</label>
+                    <input type="text" name="venue" class="form-control" value="{{ game.venue }}">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Save Result</button>
+                <a href="{{ url_for('games') }}" class="btn btn-outline-secondary w-100 mt-2">Back to Schedule</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
