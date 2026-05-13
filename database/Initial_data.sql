@@ -1,0 +1,245 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: May 13, 2026 at 07:04 PM
+-- Server version: 10.11.14-MariaDB-0ubuntu0.24.04.1
+-- PHP Version: 8.2.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `CCCS105`
+--
+
+--
+-- Dumping data for table `Games`
+--
+
+INSERT INTO `Games` (`game_id`, `game_date`, `home_team_id`, `away_team_id`, `home_team_score`, `away_team_score`, `venue`) VALUES
+(1, '2026-06-02', 1, 2, 21, 4, 'Manila 3x3 Court'),
+(2, '2026-06-03', 2, 3, 21, 11, 'Cebu City 3x3 Court'),
+(3, '2026-06-04', 3, 4, 21, 4, 'Davao City 3x3 Court'),
+(4, '2026-06-05', 4, 5, 21, 6, 'Batangas City 3x3 Court'),
+(5, '2026-06-06', 5, 6, 21, 1, 'San Fernando 3x3 Court'),
+(6, '2026-06-07', 6, 7, 21, 3, 'Malolos 3x3 Court'),
+(7, '2026-06-08', 7, 8, 21, 11, 'Santa Rosa 3x3 Court'),
+(8, '2026-06-09', 8, 9, 21, 8, 'Bacolod 3x3 Court'),
+(9, '2026-06-10', 9, 10, 21, 7, 'Iloilo City 3x3 Court'),
+(10, '2026-06-11', 10, 11, 21, 10, 'Zamboanga City 3x3 Court'),
+(11, '2026-06-12', 11, 12, 21, 10, 'Pasig 3x3 Court'),
+(12, '2026-06-13', 12, 13, 21, 19, 'Lucena 3x3 Court'),
+(13, '2026-06-14', 13, 14, 21, 8, 'Balanga 3x3 Court'),
+(14, '2026-06-15', 14, 15, 21, 2, 'Calapan 3x3 Court'),
+(15, '2026-06-01', 15, 16, 21, 5, 'Marikina 3x3 Court'),
+(16, '2026-06-02', 16, 17, 21, 17, 'Valenzuela 3x3 Court'),
+(17, '2026-06-03', 17, 18, 21, 11, 'Navotas 3x3 Court'),
+(18, '2026-06-04', 18, 19, 21, 5, 'San Juan 3x3 Court'),
+(19, '2026-06-05', 19, 20, 21, 10, 'Muntinlupa 3x3 Court'),
+(20, '2026-06-06', 20, 21, 21, 17, 'Makati 3x3 Court'),
+(21, '2026-06-07', 21, 22, 21, 14, 'Parañaque 3x3 Court'),
+(22, '2026-06-08', 22, 23, 21, 2, 'Taguig 3x3 Court'),
+(23, '2026-06-09', 23, 24, 21, 6, 'Pasay 3x3 Court'),
+(24, '2026-06-10', 24, 25, 21, 3, 'Caloocan 3x3 Court'),
+(25, '2026-06-11', 25, 26, 21, 17, 'Malabon 3x3 Court'),
+(26, '2026-06-12', 26, 27, 21, 19, 'Antipolo 3x3 Court'),
+(27, '2026-06-13', 27, 28, 21, 2, 'Antipolo 3x3 Court'),
+(28, '2026-06-14', 28, 29, 21, 13, 'Cainta 3x3 Court'),
+(29, '2026-06-15', 29, 30, 21, 2, 'Taytay 3x3 Court'),
+(30, '2026-06-01', 30, 31, 21, 8, 'Binangonan 3x3 Court'),
+(31, '2026-06-02', 31, 32, 21, 15, 'Vigan 3x3 Court'),
+(32, '2026-06-03', 32, 33, 21, 12, 'Laoag 3x3 Court'),
+(33, '2026-06-04', 33, 34, 21, 14, 'Baguio 3x3 Court'),
+(34, '2026-06-05', 34, 35, 21, 15, 'Tarlac City 3x3 Court'),
+(35, '2026-06-06', 35, 36, 21, 13, 'Palayan 3x3 Court'),
+(36, '2026-06-07', 36, 37, 21, 1, 'Ilagan 3x3 Court'),
+(37, '2026-06-08', 37, 38, 21, 3, 'Tuguegarao 3x3 Court'),
+(38, '2026-06-09', 38, 39, 21, 14, 'Lingayen 3x3 Court'),
+(39, '2026-06-10', 39, 40, 21, 19, 'San Fernando 3x3 Court'),
+(40, '2026-06-11', 40, 41, 21, 18, 'Legazpi 3x3 Court'),
+(41, '2026-06-12', 41, 42, 21, 10, 'Naga City 3x3 Court'),
+(42, '2026-06-13', 42, 43, 21, 15, 'Virac 3x3 Court'),
+(43, '2026-06-14', 43, 44, 21, 9, 'Masbate City 3x3 Court'),
+(44, '2026-06-15', 44, 45, 21, 16, 'Tacloban 3x3 Court'),
+(45, '2026-06-01', 45, 46, 21, 14, 'Catbalogan 3x3 Court'),
+(46, '2026-06-02', 46, 47, 21, 3, 'Ormoc 3x3 Court'),
+(47, '2026-06-03', 47, 48, 21, 12, 'Dumaguete 3x3 Court'),
+(48, '2026-06-04', 48, 49, 21, 10, 'Tagbilaran 3x3 Court'),
+(49, '2026-06-05', 49, 50, 21, 13, 'GenSan 3x3 Court'),
+(50, '2026-06-06', 50, 1, 21, 16, 'Butuan 3x3 Court');
+
+--
+-- Dumping data for table `Players`
+--
+
+INSERT INTO `Players` (`player_id`, `first_name`, `last_name`, `jersey_number`, `position`, `team_id`) VALUES
+(1, 'Stephen', 'Curry', 30, 'Guard', 1),
+(2, 'LeBron', 'James', 23, 'Forward', 1),
+(3, 'Kevin', 'Durant', 35, 'Forward', 1),
+(4, 'Anthony', 'Davis', 3, 'Center', 1),
+(5, 'June Mar', 'Fajardo', 15, 'Center', 2),
+(6, 'Scottie', 'Thompson', 6, 'Guard', 2),
+(7, 'CJ', 'Perez', 7, 'Guard', 2),
+(8, 'Terrence', 'Romeo', 7, 'Guard', 2),
+(9, 'Luka', 'Doncic', 77, 'Guard', 3),
+(10, 'Kyrie', 'Irving', 11, 'Guard', 3),
+(11, 'Nikola', 'Jokic', 15, 'Center', 3),
+(12, 'Giannis', 'Antetokounmpo', 34, 'Forward', 3),
+(13, 'Robert', 'Bolick', 8, 'Guard', 4),
+(14, 'Japeth', 'Aguilar', 25, 'Forward', 4),
+(15, 'Christian', 'Standhardinger', 25, 'Center', 4),
+(16, 'Chris', 'Newsome', 11, 'Guard', 4),
+(17, 'Jayson', 'Tatum', 0, 'Forward', 5),
+(18, 'Jaylen', 'Brown', 7, 'Forward', 5),
+(19, 'Shai', 'Gilgeous-Alexander', 2, 'Guard', 5),
+(20, 'Joel', 'Embiid', 21, 'Center', 5),
+(21, 'Damian', 'Lillard', 7, 'Guard', 6),
+(22, 'Khris', 'Middleton', 22, 'Forward', 6),
+(23, 'Brook', 'Lopez', 11, 'Center', 6),
+(24, 'Bobby', 'Portis', 9, 'Forward', 6),
+(25, 'Paul', 'George', 13, 'Forward', 7),
+(26, 'James', 'Harden', 1, 'Guard', 7),
+(27, 'Kawhi', 'Leonard', 2, 'Forward', 7),
+(28, 'Ivica', 'Zubac', 40, 'Center', 7),
+(29, 'Donovan', 'Mitchell', 45, 'Guard', 8),
+(30, 'Darius', 'Garland', 10, 'Guard', 8),
+(31, 'Evan', 'Mobley', 4, 'Forward', 8),
+(32, 'Jarrett', 'Allen', 31, 'Center', 8),
+(33, 'Jimmy', 'Butler', 22, 'Forward', 9),
+(34, 'Bam', 'Adebayo', 13, 'Center', 9),
+(35, 'Tyler', 'Herro', 14, 'Guard', 9),
+(36, 'Jaime', 'Jaquez', 11, 'Forward', 9),
+(37, 'Kobe', 'Bryant', 24, 'Guard', 10),
+(38, 'Domantas', 'Sabonis', 10, 'Center', 10),
+(39, 'Keegan', 'Murray', 13, 'Forward', 10),
+(40, 'Malik', 'Monk', 0, 'Guard', 10),
+(41, 'Tyrese', 'Haliburton', 0, 'Guard', 11),
+(42, 'Pascal', 'Siakam', 43, 'Forward', 11),
+(43, 'Myles', 'Turner', 33, 'Center', 11),
+(44, 'Bennedict', 'Mathurin', 0, 'Guard', 11),
+(45, 'Anthony', 'Edwards', 5, 'Guard', 12),
+(46, 'Karl-Anthony', 'Towns', 32, 'Center', 12),
+(47, 'Rudy', 'Gobert', 27, 'Center', 12),
+(48, 'Mike', 'Conley', 10, 'Guard', 12),
+(49, 'Jalen', 'Brunson', 11, 'Guard', 13),
+(50, 'Julius', 'Randle', 30, 'Forward', 13),
+(51, 'OG', 'Anunoby', 8, 'Forward', 13),
+(52, 'Josh', 'Hart', 3, 'Guard', 13),
+(53, 'Paolo', 'Banchero', 5, 'Forward', 14),
+(54, 'Franz', 'Wagner', 22, 'Forward', 14),
+(55, 'Jalen', 'Suggs', 4, 'Guard', 14),
+(56, 'Wendell', 'Carter', 34, 'Center', 14),
+(57, 'Cade', 'Cunningham', 2, 'Guard', 15),
+(58, 'Jaden', 'Ivey', 23, 'Guard', 15),
+(59, 'Jalen', 'Duren', 0, 'Center', 15),
+(60, 'Ausar', 'Thompson', 9, 'Forward', 15),
+(61, 'LaMelo', 'Ball', 1, 'Guard', 16),
+(62, 'Brandon', 'Miller', 24, 'Forward', 16),
+(63, 'Miles', 'Bridges', 0, 'Forward', 16),
+(64, 'Mark', 'Williams', 5, 'Center', 16),
+(65, 'Trae', 'Young', 11, 'Guard', 17),
+(66, 'Dejounte', 'Murray', 5, 'Guard', 17),
+(67, 'Jalen', 'Johnson', 1, 'Forward', 17),
+(68, 'Clint', 'Capela', 15, 'Center', 17),
+(69, 'Ja', 'Morant', 12, 'Guard', 18),
+(70, 'Jaren', 'Jackson', 13, 'Forward', 18),
+(71, 'Desmond', 'Bane', 22, 'Guard', 18),
+(72, 'Marcus', 'Smart', 36, 'Guard', 18),
+(73, 'Victor', 'Wembanyama', 1, 'Center', 19),
+(74, 'Devin', 'Vassell', 24, 'Guard', 19),
+(75, 'Jeremy', 'Sochan', 10, 'Forward', 19),
+(76, 'Tre', 'Jones', 33, 'Guard', 19),
+(77, 'Zion', 'Williamson', 1, 'Forward', 20),
+(78, 'Brandon', 'Ingram', 14, 'Forward', 20),
+(79, 'CJ', 'McCollum', 3, 'Guard', 20),
+(80, 'Jonas', 'Valanciunas', 17, 'Center', 20),
+(81, 'Alperen', 'Sengun', 28, 'Center', 21),
+(82, 'Jalen', 'Green', 4, 'Guard', 21),
+(83, 'Fred', 'VanVleet', 5, 'Guard', 21),
+(84, 'Jabari', 'Smith', 10, 'Forward', 21),
+(85, 'Jordan', 'Poole', 13, 'Guard', 22),
+(86, 'Kyle', 'Kuzma', 33, 'Forward', 22),
+(87, 'Tyus', 'Jones', 5, 'Guard', 22),
+(88, 'Daniel', 'Gafford', 21, 'Center', 22),
+(89, 'Mikal', 'Bridges', 1, 'Forward', 23),
+(90, 'Cam', 'Thomas', 24, 'Guard', 23),
+(91, 'Nic', 'Claxton', 33, 'Center', 23),
+(92, 'Dennis', 'Schroder', 22, 'Guard', 23),
+(93, 'Scottie', 'Barnes', 4, 'Forward', 24),
+(94, 'RJ', 'Barrett', 9, 'Forward', 24),
+(95, 'Immanuel', 'Quickley', 5, 'Guard', 24),
+(96, 'Jakob', 'Poeltl', 19, 'Center', 24),
+(97, 'Bradley', 'Beal', 3, 'Guard', 25),
+(98, 'Devin', 'Booker', 1, 'Guard', 25),
+(99, 'Kevin', 'Durant', 35, 'Forward', 25),
+(100, 'Jusuf', 'Nurkic', 20, 'Center', 25);
+
+--
+-- Dumping data for table `Teams`
+--
+
+INSERT INTO `Teams` (`team_id`, `team_name`, `city`, `coach_name`) VALUES
+(1, 'Manila Stars', 'Manila', 'Coach Aris'),
+(2, 'Cebu Sharks', 'Cebu City', 'Coach Benjie'),
+(3, 'Davao Eagles', 'Davao City', 'Coach Caloy'),
+(4, 'Batangas Blades', 'Batangas City', 'Coach Danny'),
+(5, 'Pampanga Lanterns', 'San Fernando', 'Coach Ed'),
+(6, 'Bulacan Kuyas', 'Malolos', 'Coach Frank'),
+(7, 'Laguna Heroes', 'Santa Rosa', 'Coach Gabby'),
+(8, 'Bacolod Smile', 'Bacolod', 'Coach Harold'),
+(9, 'Iloilo Royals', 'Iloilo City', 'Coach Ian'),
+(10, 'Zamboanga Valientes', 'Zamboanga City', 'Coach Jun'),
+(11, 'Pasig Pirates', 'Pasig', 'Coach Ken'),
+(12, 'Quezon Huskers', 'Lucena', 'Coach Lando'),
+(13, 'Bataan Risers', 'Balanga', 'Coach Mon'),
+(14, 'Mindoro Disiplinados', 'Calapan', 'Coach Noel'),
+(15, 'Marikina Shoemakers', 'Marikina', 'Coach Ogie'),
+(16, 'Valenzuela Classic', 'Valenzuela', 'Coach Pido'),
+(17, 'Navotas Clutch', 'Navotas', 'Coach Quinto'),
+(18, 'San Juan Knights', 'San Juan', 'Coach Randy'),
+(19, 'Muntinlupa Cagers', 'Muntinlupa', 'Coach Sonny'),
+(20, 'Makati Skyscrapers', 'Makati', 'Coach Tim'),
+(21, 'Parañaque Patriots', 'Parañaque', 'Coach Bong'),
+(22, 'Taguig Generals', 'Taguig', 'Coach Al'),
+(23, 'Pasay Voyagers', 'Pasay', 'Coach Chot'),
+(24, 'Caloocan Kankaloo', 'Caloocan', 'Coach Jojo'),
+(25, 'Malabon Tigers', 'Malabon', 'Coach Leo'),
+(26, 'Rizal Crusaders', 'Antipolo', 'Coach Mark'),
+(27, 'Antipolo Pilgrims', 'Antipolo', 'Coach Nap'),
+(28, 'Cainta Robins', 'Cainta', 'Coach Rico'),
+(29, 'Taytay Archers', 'Taytay', 'Coach Steve'),
+(30, 'Binangonan Waves', 'Binangonan', 'Coach Vic'),
+(31, 'Vigan Heritage', 'Vigan', 'Coach Willy'),
+(32, 'Laoag Sunshine', 'Laoag', 'Coach Xavi'),
+(33, 'Baguio Frost', 'Baguio', 'Coach Yolly'),
+(34, 'Tarlac United', 'Tarlac City', 'Coach Zap'),
+(35, 'Nueva Ecija Vanguards', 'Palayan', 'Coach Arnel'),
+(36, 'Isabela Warriors', 'Ilagan', 'Coach Bert'),
+(37, 'Cagayan Giants', 'Tuguegarao', 'Coach Cris'),
+(38, 'Pangasinan Heat', 'Lingayen', 'Coach Dom'),
+(39, 'La Union Surfers', 'San Fernando', 'Coach Ely'),
+(40, 'Bicol Volcanoes', 'Legazpi', 'Coach Fred'),
+(41, 'Naga Flames', 'Naga City', 'Coach Gerry'),
+(42, 'Catanduanes Waves', 'Virac', 'Coach Henry'),
+(43, 'Masbate Rodeos', 'Masbate City', 'Coach Ivan'),
+(44, 'Leyte Ironmen', 'Tacloban', 'Coach Jake'),
+(45, 'Samar Guardians', 'Catbalogan', 'Coach Karl'),
+(46, 'Ormoc Sugarcane', 'Ormoc', 'Coach Luis'),
+(47, 'Dumaguete Gentle', 'Dumaguete', 'Coach Mike'),
+(48, 'Bohol Tarsiers', 'Tagbilaran', 'Coach Nick'),
+(49, 'GenSan Warriors', 'GenSan', 'Coach Oscar'),
+(50, 'Butuan Kingfishers', 'Butuan', 'Coach Paul');
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
