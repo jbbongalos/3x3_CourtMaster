@@ -62,13 +62,18 @@ def add_player():
     conn = get_db_connection()
     cursor = conn.cursor()
     t_id = request.form['team_id'] if request.form['team_id'] else None
-    cursor.execute("""
-        INSERT INTO players (first_name, last_name, jersey_number, position, team_id) 
-        VALUES (%s, %s, %s, %s, %s)
-    """, (request.form['first_name'], request.form['last_name'], request.form['jersey_number'], request.form['position'], t_id))
-    conn.commit()
-    cursor.close()
-    conn.close()
+    try:
+        cursor.execute("""
+            INSERT INTO players (first_name, last_name, jersey_number, position, team_id) 
+            VALUES (%s, %s, %s, %s, %s)
+        """, (request.form['first_name'], request.form['last_name'], request.form['jersey_number'], request.form['position'], t_id))
+        conn.commit()
+        flash(f"Player {request.form['first_name']} successfully added!")
+    except Exception as e:
+        flash("Error adding player. Please check your inputs.")
+    finally:
+        cursor.close()
+        conn.close()
     return redirect(url_for('players'))
 
 @app.route('/edit_player/<int:id>', methods=['GET', 'POST'])
@@ -84,6 +89,7 @@ def edit_player(id):
         conn.commit()
         cursor.close()
         conn.close()
+        flash("Player details updated successfully.")
         return redirect(url_for('players'))
     cursor.execute("SELECT * FROM players WHERE player_id = %s", (id,))
     player = cursor.fetchone()
@@ -101,6 +107,7 @@ def delete_player(id):
     conn.commit()
     cursor.close()
     conn.close()
+    flash("Player removed from the roster.")
     return redirect(url_for('players'))
 
 # --- 3. TEAMS SECTION ---
@@ -118,31 +125,22 @@ def teams():
 def team_details(id):
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
-    
-    # Get Team Info
     cursor.execute("SELECT * FROM teams WHERE team_id = %s", (id,))
     team = cursor.fetchone()
-    
-    # Get Roster
     cursor.execute("SELECT * FROM players WHERE team_id = %s", (id,))
     roster = cursor.fetchall()
-    
-    # Calculate WINS
     cursor.execute("""
         SELECT COUNT(*) as wins FROM games 
         WHERE (home_team_id = %s AND home_team_score > away_team_score)
         OR (away_team_id = %s AND away_team_score > home_team_score)
     """, (id, id))
     wins = cursor.fetchone()['wins']
-
-    # Calculate LOSSES
     cursor.execute("""
         SELECT COUNT(*) as losses FROM games 
         WHERE (home_team_id = %s AND home_team_score < away_team_score)
         OR (away_team_id = %s AND away_team_score < home_team_score)
     """, (id, id))
     losses = cursor.fetchone()['losses']
-    
     cursor.close()
     conn.close()
     return render_template('team_view.html', team=team, roster=roster, wins=wins, losses=losses)
@@ -156,6 +154,7 @@ def add_team():
     conn.commit()
     cursor.close()
     conn.close()
+    flash(f"Team {request.form['team_name']} registered successfully!")
     return redirect(url_for('teams'))
 
 @app.route('/delete_team/<int:id>')
@@ -165,8 +164,9 @@ def delete_team(id):
     try:
         cursor.execute("DELETE FROM teams WHERE team_id = %s", (id,))
         conn.commit()
+        flash("Team deleted successfully.")
     except mysql.connector.Error:
-        flash("Cannot delete team with assigned players or games!")
+        flash("Error: Cannot delete team while players or games are assigned to it.")
     finally:
         cursor.close()
         conn.close()
@@ -203,8 +203,9 @@ def add_game():
             VALUES (%s, %s, %s, 0, 0, %s)
         """, (request.form['game_date'], request.form['home_team_id'], request.form['away_team_id'], request.form['venue']))
         conn.commit()
+        flash("New game scheduled successfully.")
     except Exception as e:
-        print(f"Error: {e}")
+        flash("Error scheduling game. Check your inputs.")
     finally:
         cursor.close()
         conn.close()
@@ -218,6 +219,7 @@ def delete_game(id):
     conn.commit()
     cursor.close()
     conn.close()
+    flash("Game record deleted.")
     return redirect(url_for('games'))
 
 @app.route('/edit_game/<int:id>', methods=['GET', 'POST'])
@@ -232,6 +234,7 @@ def edit_game(id):
         conn.commit()
         cursor.close()
         conn.close()
+        flash("Game scores and venue updated.")
         return redirect(url_for('games'))
     cursor.execute("""
         SELECT g.*, t1.team_name as home, t2.team_name as away 
