@@ -1,29 +1,42 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="dashboard-wrapper animate__animated animate__fadeIn">
-    
-    <div class="hero-section">
-        <h1 class="hero-title">3&times;3 LEAGUE <span class="accent">CONTROL</span></h1>
-        <p class="hero-subtitle">
-            Advanced management for elite 3&times;3 basketball tournaments. 
-            Track rosters, manage teams, and log game results in real-time.
-        </p>
+<div class="py-5">
+    <div class="row align-items-center mb-5">
+        <div class="col-lg-8">
+            <h1 class="display-3 fw-bold text-white mb-2">3x3 CourtMaster</h1>
+            <p class="lead text-muted">Advanced management for elite 3×3 basketball tournaments. Track rosters, manage teams, and log game results in real-time. Bringing data-driven solutions to the court. This platform serves as a digital command center for organizing tournaments, managing rosters, and archiving game history for local 3×3 leagues.</p>
+        </div>
     </div>
 
-    <div class="stats-grid">
-        <div class="stat-card">
-            <h2 class="stat-number">{{ p_count }}</h2>
-            <p class="stat-label">ATHLETES REGISTERED</p>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 p-4 text-center">
+                <div class="card-body">
+                    <div class="display-4 fw-bold text-orange mb-1">{{ p_count }}</div>
+                    <h5 class="text-uppercase tracking-wider small fw-bold">Athletes Registered</h5>
+                    <i class="bi bi-person-badge opacity-25" style="font-size: 3rem;"></i>
+                </div>
+            </div>
         </div>
 
-        <div class="stat-card">
-            <h2 class="stat-number">{{ t_count }}</h2>
-            <p class="stat-label">PRO TEAMS</p>
+        <div class="col-md-4">
+            <div class="card h-100 p-4 text-center">
+                <div class="card-body">
+                    <div class="display-4 fw-bold text-orange mb-1">{{ t_count }}</div>
+                    <h5 class="text-uppercase tracking-wider small fw-bold">Pro Teams</h5>
+                    <i class="bi bi-shield-shaded opacity-25" style="font-size: 3rem;"></i>
+                </div>
+            </div>
         </div>
 
-        <div class="stat-card">
-            <h2 class="stat-number">{{ g_count }}</h2>
-            <p class="stat-label">GAMES TRACKED</p>
+        <div class="col-md-4">
+            <div class="card h-100 p-4 text-center">
+                <div class="card-body">
+                    <div class="display-4 fw-bold text-orange mb-1">{{ g_count }}</div>
+                    <h5 class="text-uppercase tracking-wider small fw-bold">Games Tracked</h5>
+                    <i class="bi bi-trophy opacity-25" style="font-size: 3rem;"></i>
+                </div>
+            </div>
         </div>
     </div>
 </div>
