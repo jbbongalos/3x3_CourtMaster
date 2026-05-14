@@ -1,36 +1,31 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="p-5 mb-4 bg-light rounded-3 shadow-sm border">
-    <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold text-dark">Basketball Management System</h1>
-        <p class="col-md-8 fs-4">Welcome to the CCCS105 project dashboard. Access, track, and modify players, teams, and game schedules with ease.</p>
-        <hr class="my-4">
-        <div class="row text-center">
-            <div class="col-md-4">
-                <div class="card bg-primary text-white mb-3">
-                    <div class="card-body">
-                        <h3>{{ player_count }}</h3>
-                        <p class="card-text">Registered Players</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card bg-success text-white mb-3">
-                    <div class="card-body">
-                        <h3>{{ team_count }}</h3>
-                        <p class="card-text">Active Teams</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card bg-warning text-dark mb-3">
-                    <div class="card-body">
-                        <h3>{{ game_count }}</h3>
-                        <p class="card-text">Games Recorded</p>
-                    </div>
-                </div>
-            </div>
+<div class="dashboard-wrapper">
+    
+    <div class="hero-section">
+        <h1 class="hero-title">3&times;3 LEAGUE <span class="accent">CONTROL</span></h1>
+        <p class="hero-subtitle">
+            Professional management for elite basketball tournaments. 
+            Track athletes, manage pro teams, and log game results in real-time.
+        </p>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h2 class="stat-number">{{ p_count }}</h2>
+            <p class="stat-label">ATHLETES REGISTERED</p>
+        </div>
+
+        <div class="stat-card">
+            <h2 class="stat-number">{{ t_count }}</h2>
+            <p class="stat-label">PRO TEAMS</p>
+        </div>
+
+        <div class="stat-card">
+            <h2 class="stat-number">{{ g_count }}</h2>
+            <p class="stat-label">GAMES TRACKED</p>
         </div>
     </div>
+
 </div>
 {% endblock %}
