@@ -1,6 +1,6 @@
 # 3x3 CourtMaster: Basketball Management System
 > **CCCS 105 - Information Management 1 Final Project**
-> A Python-based database application for managing 3x3 basketball league operations. Designed to access, store, and modify basketball tournament data.
+* A Python-based database application for managing 3x3 basketball league operations. Designed to access, store, and modify basketball tournament data.
 
 ---
 
@@ -19,7 +19,7 @@
 
 ## Introduction
 ### Background
-3x3 Basketball is becoming very popular, but managing team rosters, player statistics, and game schedules manually is prone to errors. **3x3 CourtMaster** was developed to digitize this process, providing a centralized platform for tournament organizers to maintain accurate records.
+**3x3 Basketball** is becoming very popular, but managing team rosters, player statistics, and game schedules manually is prone to errors. **3x3 CourtMaster** was developed to digitize this process, providing a centralized platform for tournament organizers to maintain accurate records.
 
 ### Problem Statement
 Tournament organizers often face duplicate entries, inconsistent scoring data, and difficulty in retrieving historical player data. This application provides a searchable SCRUD (Search, Create, Read, Update, Delete) system integrated with a MySQL database.
@@ -80,6 +80,9 @@ To develop a Flask and MySQL-based SCRUD application that efficiently manages ba
 ### Relational Model
 ![Relational Model](docs/diagrams/rm.png)
 *The physical blueprint showing exact SQL data types (INT, VARCHAR, DATE) and Foreign Key (FK) constraints.*
+* **Teams:** `team_id` (PK), `team_name`, `city`, `coach_name`.
+* **Players:** `player_id` (PK), `first_name`, `last_name`, `jersey_number`, `position`, `team_id` (FK).
+* **Games:** `game_id` (PK), `game_date`, `home_team_id` (FK), `away_team_id` (FK), `home_team_score`, `away_team_score`, `venue`.
 
 ---
 
