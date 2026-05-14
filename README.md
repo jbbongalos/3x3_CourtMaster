@@ -1,4 +1,4 @@
-# 🏀 3x3 CourtMaster: Basketball Management System
+# 3x3 CourtMaster: Basketball Management System
 > **CCCS 105 - Information Management 1 Final Project**
 > A Python-based database application for managing 3x3 basketball league operations. Designed to access, store, and modify basketball tournament data.
 
