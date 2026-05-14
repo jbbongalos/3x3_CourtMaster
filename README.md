@@ -1,2 +1,2 @@
 # Basketball_Management_System
-A Flask-based web application for managing basketball teams, players, and game records with MySQL database integration.
+A web application built on Flask that integrates MySQL to manage basketball teams, players, and game records.
