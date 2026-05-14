@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +11,9 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
         <div class="container">
-            <a class="navbar-brand" href="/">🏀 Basketball Management System</a>
+            <a class="navbar-brand" href="/">
+                <span class="dribble-ball">🏀</span> Basketball Management System
+            </a>
             <div class="navbar-nav">
                 <a class="nav-link" href="/players">Players</a>
                 <a class="nav-link" href="/teams">Teams</a>
@@ -23,7 +23,6 @@
     </nav>
 
     <div class="container">
-        <!-- This is where other pages will inject their content -->
         {% block content %}{% endblock %}
     </div>
 
