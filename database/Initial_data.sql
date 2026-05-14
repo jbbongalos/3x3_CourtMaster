@@ -11,7 +11,7 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-INSERT INTO `teams` (`team_id`, `team_name`, `city`, `coach_name`) VALUES
+INSERT INTO `Teams` (`team_id`, `team_name`, `city`, `coach_name`) VALUES
 (1, 'Manila Stars', 'Manila', 'Coach Aris'),
 (2, 'Cebu Sharks', 'Cebu City', 'Coach Benjie'),
 (3, 'Davao Eagles', 'Davao City', 'Coach Caloy'),
@@ -63,7 +63,7 @@ INSERT INTO `teams` (`team_id`, `team_name`, `city`, `coach_name`) VALUES
 (49, 'GenSan Warriors', 'GenSan', 'Coach Oscar'),
 (50, 'Butuan Kingfishers', 'Butuan', 'Coach Paul');
 
-INSERT INTO `players` (`player_id`, `first_name`, `last_name`, `jersey_number`, `position`, `team_id`) VALUES
+INSERT INTO `Players` (`player_id`, `first_name`, `last_name`, `jersey_number`, `position`, `team_id`) VALUES
 (1, 'Stephen', 'Curry', 30, 'Guard', 1),
 (2, 'LeBron', 'James', 23, 'Forward', 1),
 (3, 'Kevin', 'Durant', 35, 'Forward', 1),
@@ -165,7 +165,7 @@ INSERT INTO `players` (`player_id`, `first_name`, `last_name`, `jersey_number`, 
 (99, 'Kevin', 'Durant', 35, 'Forward', 25),
 (100, 'Jusuf', 'Nurkic', 20, 'Center', 25);
 
-INSERT INTO `games` (`game_id`, `game_date`, `home_team_id`, `away_team_id`, `home_team_score`, `away_team_score`, `venue`) VALUES
+INSERT INTO `Games` (`game_id`, `game_date`, `home_team_id`, `away_team_id`, `home_team_score`, `away_team_score`, `venue`) VALUES
 (1, '2026-06-02', 1, 2, 21, 4, 'Manila 3x3 Court'),
 (2, '2026-06-03', 2, 3, 21, 11, 'Cebu City 3x3 Court'),
 (3, '2026-06-04', 3, 4, 21, 4, 'Davao City 3x3 Court'),
