@@ -1,151 +1,118 @@
 :root {
-    --bg-black: #050505;
-    --card-gray: #111111;
-    --accent-orange: #ff6600;
-    --text-white: #ffffff;
-    --text-dim: #777777;
-    --border-color: #222222;
+    --orange-brand: #ff6600;
+    --black-text: #000000;
+    --glass-white: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.4);
 }
 
 body {
-    background-color: var(--bg-black) !important;
-    color: var(--text-white) !important;
+    background: url('/static/images/background.webp') no-repeat center center fixed !important;
+    background-size: cover !important;
+    color: var(--black-text);
     font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    transition: all 0.3s ease;
 }
 
-/* Navbar Styling */
-.bg-dark-custom {
-    background-color: #000000 !important;
-    border-bottom: 1px solid var(--border-color);
-    padding: 1rem 0;
+/* --- HERO SECTION: Modern & Centered --- */
+.hero-content {
+    text-align: center !important;
+    padding: 80px 20px;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+/* Unique Typography for Title */
+.hero-content h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(3rem, 10vw, 6rem) !important; /* Responsive size */
+    font-weight: 900 !important;
+    letter-spacing: -2px;
+    margin-bottom: 10px;
+    background: linear-gradient(to bottom, #000 60%, #444 100%);
+}
+
+.hero-content p {
+    font-weight: 600 !important;
+    max-width: 750px;
+    margin: 0 auto 50px auto !important;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* --- STATS CARDS: Floating Glassmorphism --- */
+.stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    padding-bottom: 50px;
+}
+
+.card {
+    background: var(--glass-white) !important;
+    backdrop-filter: blur(15px) saturate(150%);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 24px !important;
+    padding: 40px !important;
+    min-width: 280px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+/* Hover Effect: Lalutang at mag-glow ang card */
+.card:hover {
+    transform: translateY(-15px) scale(1.02);
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-color: var(--orange-brand);
+}
+
+.card h2 {
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 0;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.card p {
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    margin-top: -5px;
+}
+
+/* Custom Icon Glow */
+.card i {
+    color: var(--black-text);
+    transition: color 0.3s ease;
+}
+.card:hover i {
+    color: var(--orange-brand);
+}
+
+/* --- NAVIGATION: Sleek & Minimal --- */
+.navbar {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
 }
 
 .navbar-brand {
     font-weight: 900;
-    color: white !important;
+    letter-spacing: -0.5px;
 }
 
-.accent {
-    color: var(--accent-orange);
+/* --- ANIMATIONS --- */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.nav-link {
-    color: var(--text-dim) !important;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    margin-left: 20px;
-}
-
-.nav-link:hover {
-    color: var(--accent-orange) !important;
-}
-
-/* Hero Section */
-.hero-section {
-    padding: 80px 0 40px 0;
-}
-
-.hero-title {
-    font-size: 4rem;
-    font-weight: 900;
-    line-height: 1;
-    margin-bottom: 15px;
-}
-
-.hero-subtitle {
-    color: var(--text-dim);
-    font-size: 1.1rem;
-    max-width: 650px;
-}
-
-/* Stats Layout */
-.stats-grid {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.stat-card {
-    background-color: var(--card-gray);
-    border: 1px solid var(--border-color);
-    padding: 60px 20px;
-    flex: 1;
-    min-width: 250px;
-    text-align: center;
-    transition: 0.3s ease;
-}
-
-.stat-card:hover {
-    border-color: var(--accent-orange);
-    background-color: #161616;
-}
-
-.stat-number {
-    font-size: 5rem;
-    font-weight: 900;
-    color: var(--accent-orange);
-    margin: 0;
-}
-
-.stat-label {
-    margin-top: 15px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    font-size: 0.8rem;
-}
-
-/* Dribble Animation */
-@keyframes dribble {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(8px); }
-}
-
-.dribble-ball {
-    display: inline-block;
-    animation: dribble 0.8s infinite ease-in-out;
-}
-
-/* Table fixes */
-.table {
-    color: var(--text-white) !important;
-    background-color: var(--card-gray);
-    border-color: var(--border-color);
-}
-
-.table-hover tbody tr:hover {
-    background-color: #1a1a1a !important;
-    color: var(--accent-orange) !important;
-}
-
-/* --- MODAL & FORM FIXES --- */
-.modal-content {
-    background-color: var(--card-gray);
-    border: 1px solid var(--border-color);
-    color: var(--text-white);
-}
-
-.modal-header, .modal-footer {
-    border-color: var(--border-color);
-    background-color: transparent !important;
-}
-
-.modal-body label {
-    color: var(--text-white);
-    margin-bottom: 8px;
-    font-weight: 700;
-    display: block;
-}
-
-.form-control, .form-select {
-    background-color: #1a1a1a;
-    border: 1px solid var(--border-color);
-    color: var(--text-white) !important;
-}
-
-.search-input-white:focus {
-    background-color: #1a1a1a;
-    border-color: var(--accent-orange);
-    box-shadow: none;
-    color: white !important;
+/* Center all common elements */
+h1, h2, h3, h4, h5, p, span, b, strong, .nav-link {
+    color: var(--black-text);
 }
