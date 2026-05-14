@@ -1,38 +1,21 @@
 :root {
-    --bg-dark: #050505;
-    --bg-accent: #1a1a1a; /* Lighter charcoal for depth */
-    --card-bg: #111111;
+    --bg-black: #050505;
+    --card-gray: #111111;
     --accent-orange: #ff6600;
+    --text-white: #ffffff;
     --text-dim: #777777;
     --border-color: #222222;
 }
 
 body {
-    margin: 0;
-    min-height: 100vh;
-    /* This creates the depth you're missing */
-    background: radial-gradient(circle at center, var(--bg-accent) 0%, var(--bg-dark) 100%) !important;
-    background-attachment: fixed;
-    color: #ffffff !important;
+    background-color: var(--bg-black) !important;
+    color: var(--text-white) !important;
     font-family: 'Inter', sans-serif;
 }
 
-/* Subtle Tactical Grid Overlay */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-image: 
-        linear-gradient(rgba(255, 102, 0, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 102, 0, 0.02) 1px, transparent 1px);
-    background-size: 50px 50px;
-    z-index: -1;
-}
-
-/* Navbar with Glassmorphism */
+/* Navbar Styling */
 .bg-dark-custom {
-    background-color: rgba(0, 0, 0, 0.8) !important;
-    backdrop-filter: blur(10px);
+    background-color: #000000 !important;
     border-bottom: 1px solid var(--border-color);
     padding: 1rem 0;
 }
@@ -40,85 +23,129 @@ body::before {
 .navbar-brand {
     font-weight: 900;
     color: white !important;
-    text-transform: uppercase;
-    letter-spacing: 1px;
 }
 
-.accent { color: var(--accent-orange); }
+.accent {
+    color: var(--accent-orange);
+}
 
 .nav-link {
     color: var(--text-dim) !important;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     margin-left: 20px;
-    transition: 0.3s;
 }
 
-.nav-link:hover { color: var(--accent-orange) !important; }
+.nav-link:hover {
+    color: var(--accent-orange) !important;
+}
 
-/* Dashboard UI */
-.hero-section { padding: 80px 0 40px 0; }
+/* Hero Section */
+.hero-section {
+    padding: 80px 0 40px 0;
+}
 
 .hero-title {
-    font-size: 4.5rem;
+    font-size: 4rem;
     font-weight: 900;
-    line-height: 0.9;
-    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 15px;
 }
 
 .hero-subtitle {
     color: var(--text-dim);
     font-size: 1.1rem;
-    max-width: 600px;
-    margin-top: 15px;
+    max-width: 650px;
 }
 
+/* Stats Layout */
 .stats-grid {
     display: flex;
     gap: 20px;
-    margin-top: 30px;
+    flex-wrap: wrap;
 }
 
 .stat-card {
-    background-color: var(--card-bg);
+    background-color: var(--card-gray);
     border: 1px solid var(--border-color);
     padding: 60px 20px;
     flex: 1;
+    min-width: 250px;
     text-align: center;
-    border-radius: 4px;
-    transition: all 0.3s ease;
+    transition: 0.3s ease;
 }
 
 .stat-card:hover {
     border-color: var(--accent-orange);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    background-color: #161616;
 }
 
 .stat-number {
-    font-size: 5.5rem;
+    font-size: 5rem;
     font-weight: 900;
     color: var(--accent-orange);
     margin: 0;
-    line-height: 1;
 }
 
 .stat-label {
     margin-top: 15px;
     font-weight: 800;
     letter-spacing: 2px;
-    font-size: 0.75rem;
-    color: white;
+    font-size: 0.8rem;
 }
 
-/* Animation */
+/* Dribble Animation */
+@keyframes dribble {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+}
+
 .dribble-ball {
     display: inline-block;
-    animation: bounce 0.8s infinite alternate ease-in-out;
+    animation: dribble 0.8s infinite ease-in-out;
 }
 
-@keyframes bounce {
-    from { transform: translateY(0); }
-    to { transform: translateY(6px); }
+/* Table fixes */
+.table {
+    color: var(--text-white) !important;
+    background-color: var(--card-gray);
+    border-color: var(--border-color);
+}
+
+.table-hover tbody tr:hover {
+    background-color: #1a1a1a !important;
+    color: var(--accent-orange) !important;
+}
+
+/* --- MODAL & FORM FIXES --- */
+.modal-content {
+    background-color: var(--card-gray);
+    border: 1px solid var(--border-color);
+    color: var(--text-white);
+}
+
+.modal-header, .modal-footer {
+    border-color: var(--border-color);
+    background-color: transparent !important;
+}
+
+.modal-body label {
+    color: var(--text-white);
+    margin-bottom: 8px;
+    font-weight: 700;
+    display: block;
+}
+
+.form-control, .form-select {
+    background-color: #1a1a1a;
+    border: 1px solid var(--border-color);
+    color: var(--text-white) !important;
+}
+
+.search-input-white:focus {
+    background-color: #1a1a1a;
+    border-color: var(--accent-orange);
+    box-shadow: none;
+    color: white !important;
 }
