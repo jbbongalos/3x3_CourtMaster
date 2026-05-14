@@ -131,5 +131,8 @@ The application follows the **MVC (Model-View-Controller)** pattern:
 * **Navigation:** Use the Sidebar/Navbar to switch between **Teams**, **Players**, and **Games**. Use the "Search" bar on the Players page for live filtering.
 
 ---
-**Developed by:** [Bongalos, Joshua Benedict B.], [Mangente, Kurt Hearick B.], [Pontanal, Jake Laurence L.]
+**Developed by:** Bongalos, Joshua Benedict B.
+                  Mangente, Kurt Hearick B.
+                  Pontanal, Jake Laurence L.
+
 **Course:** 2nd Year Computer Science
