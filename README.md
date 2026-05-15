@@ -97,7 +97,7 @@ The application follows the **MVC (Model-View-Controller)** pattern:
 
 ## Setup & Installation
 
-1. **Clone Repository:** `git clone https://github.com/YOUR_USERNAME/3x3_courtmaster.git`.
+1. **Clone Repository:** `git clone https://github.com/YOUR_USERNAME/3x3_CourtMaster.git`.
 2. **Virtual Environment:** Run `python -m venv venv` and activate it:
    * Windows: `venv\Scripts\activate`
    * Mac/Linux: `source venv/bin/activate`
@@ -106,7 +106,7 @@ The application follows the **MVC (Model-View-Controller)** pattern:
    * Open XAMPP and start Apache and MySQL.
    * Create a database named `CCCS105` in phpMyAdmin.
    * Import `database/schema.sql` first, followed by `database/Initial_data.sql`.
-5. **Run Application:** Execute `python server.py`.
+5. **Run Application:** Type `cd src` Execute `python server.py`.
 6. **Access:** Open `http://127.0.0.1:5000` in your browser.
 
 ---
@@ -115,9 +115,9 @@ The application follows the **MVC (Model-View-Controller)** pattern:
 
 | Member Name | Role | Responsibilities |
 | :--- | :--- | :--- |
-| Bongalos, Joshua Benedict B. | Documentation & Database Designer | Designing the ERD and Relational Model, creating the database schema and initial data, and writing the final technical documentation. |
-| Mangente, Kurt Hearick B. | Frontend Developer | ERD/RM Design, Schema creation, and Normalization. |
-| Pontanal, Jake Laurence L. | Backend Developer | Bootstrap design, JavaScript Search, and UI implementation. |
+| Bongalos, Joshua Benedict B. | Lead Documentation & Database Designer | Designing the ERD and Relational Model, implemented the MySQL schema (normalization), and managed the final technical documentation. |
+| Mangente, Kurt Hearick B. | Frontend Developer | Developed the user interface, implemented the CSS, and integrated JavaScript for real-time search and UI animations. |
+| Pontanal, Jake Laurence L. | Backend Developer & Documentation | Managed Flask server-side routing, developed SQL queries for database interaction, handled session logic, and co-authored the technical report. |
 
 ---
 
@@ -133,6 +133,8 @@ The application follows the **MVC (Model-View-Controller)** pattern:
 * Open your browser to: `http://127.0.0.1:5000`.
 * **Navigation:** Use the Sidebar/Navbar to switch between **Teams**, **Players**, and **Games**. Use the "Search" bar on the Players page for live filtering.
 
+
+**Video Presentation Link:** [Insert Link Here]
 ---
 **Developed by:** 
 * Bongalos, Joshua Benedict B.
