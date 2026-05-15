@@ -134,6 +134,7 @@ python server.py
 http://127.0.0.1:5000
 ---
 
+---
 ## Team Members & Roles
 
 | Member Name | Role | Responsibilities |
