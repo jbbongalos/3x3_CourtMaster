@@ -14,6 +14,7 @@
 7. [Team Members and Roles](#team-members--roles)
 8. [Dependencies](#dependencies)
 9. [Running Instructions](#running-instructions)
+10. [Video Presentation Link](#video-presentation-link)
 
 ---
 
@@ -158,7 +159,6 @@ http://127.0.0.1:5000
 * **Navigation:** Use the Sidebar/Navbar to switch between **Teams**, **Players**, and **Games**. Use the "Search" bar on the Players page for live filtering.
 
 
-**Video Presentation Link:** [Insert Link Here]
 ---
 **Developed by:** 
 * Bongalos, Joshua Benedict B.
@@ -166,3 +166,9 @@ http://127.0.0.1:5000
 * Pontanal, Jake Laurence L.
 
 **Course:** 2nd Year Computer Science
+
+---
+## Video Presentation Link
+
+[Insert Link Here]
+
