@@ -96,18 +96,38 @@ The application follows the **MVC (Model-View-Controller)** pattern:
 ---
 
 ## Setup & Installation
+1. Clone Repository:
+```bash
+git clone https://github.com/jbbongalos/3x3_CourtMaster.git
+```
 
-1. **Clone Repository:** `git clone https://github.com/YOUR_USERNAME/3x3_CourtMaster.git`.
-2. **Virtual Environment:** Run `python -m venv venv` and activate it:
-   * Windows: `venv\Scripts\activate`
-   * Mac/Linux: `source venv/bin/activate`
-3. **Install Dependencies:** `pip install -r requirements.txt`.
-4. **Database Configuration:**
-   * Open XAMPP and start Apache and MySQL.
-   * Create a database named `CCCS105` in phpMyAdmin.
-   * Import `database/schema.sql` first, followed by `database/Initial_data.sql`.
-5. **Run Application:** Type `cd src` Execute `python server.py`.
-6. **Access:** Open `http://127.0.0.1:5000` in your browser.
+2. Virtual Environment:
+```bash
+python -m venv venv
+source venv/bin/activate  # Mac/Linux
+OR
+
+venv\Scripts\activate     # Windows
+```
+
+3. Install Dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+4. Database Configuration:
+
+    Open XAMPP and start Apache and MySQL. 
+
+    Create a database named `CCCS105` in phpMyAdmin.
+
+    Import database/schema.sql followed by database/initial_data.sql.
+
+5. Run Application:
+```bash
+cd src
+python server.py
+```
 
 ---
 
