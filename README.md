@@ -121,7 +121,7 @@ pip install -r requirements.txt
 
     Create a database named `CCCS105` in phpMyAdmin.
 
-    Import database/schema.sql followed by database/initial_data.sql.
+    Import `database/schema.sql` followed by `database/initial_data.sql`.
 
 5. Run Application:
 ```bash
